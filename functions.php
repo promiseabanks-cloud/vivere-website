@@ -45,7 +45,7 @@ add_action(
 				array(
 					'img'      => get_theme_file_uri( 'assets/images/' ),
 					'logo'     => $logo ? wp_get_attachment_image_url( $logo, 'medium' ) : '',
-					'login'    => is_user_logged_in() ? admin_url( 'profile.php' ) : wp_login_url(),
+					'login'    => vivere_account_url(),
 					'loggedIn' => is_user_logged_in(),
 				)
 			) . ';',
@@ -227,3 +227,25 @@ function vivere_handle_contact() {
 }
 add_action( 'admin_post_nopriv_vivere_contact', 'vivere_handle_contact' );
 add_action( 'admin_post_vivere_contact', 'vivere_handle_contact' );
+
+/* Readers manage everything from the Bookkeeper account page, not wp-admin. */
+function vivere_account_url() {
+	if ( function_exists( 'bk_account_url' ) ) {
+		return bk_account_url();
+	}
+	return is_user_logged_in() ? admin_url( 'profile.php' ) : wp_login_url();
+}
+
+/* The header's log in / log out block becomes a "My account" or "Log in" link to that page. */
+add_filter(
+	'render_block_core/loginout',
+	function ( $html, $block ) {
+		if ( ! function_exists( 'bk_account_url' ) ) {
+			return $html;
+		}
+		$cls = trim( 'wp-block-loginout ' . ( $block['attrs']['className'] ?? '' ) );
+		return '<div class="' . esc_attr( $cls ) . '"><a href="' . esc_url( bk_account_url() ) . '">' . ( is_user_logged_in() ? 'My account' : 'Log in' ) . '</a></div>';
+	},
+	10,
+	2
+);
