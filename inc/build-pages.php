@@ -569,7 +569,7 @@ function vv_page_book( $m, $j ) {
 			'tag'     => 'Coming soon',
 			'title'   => 'The Vivere ' . vv_mark( 'book.' ),
 			'lead'    => 'Ann Uramu\'s new book, with a private online workbook you read and work through on Vivere.',
-			'buttons' => array( array( 'Read chapter one free', '/read/becoming-by-design/', 'vv-light' ), array( 'Join the waitlist', '#join', 'vv-outline-light' ) ),
+			'buttons' => array( array( 'Read chapter one free', '/read/becoming-by-design/', 'vv-light' ), array( 'Buy the book', '/read/becoming-by-design/#/buy', 'vv-outline-light' ), array( 'Join the waitlist', '#join', 'vv-outline-light' ) ),
 			'media'   => array(
 				vv_theme_img( 'journal.jpg', 'A woman writing in a journal at a desk', 'vv-phero-img vv-phero-img--a' ),
 				vv_theme_img( 'hero-3.jpg', 'An open book', 'vv-phero-img vv-phero-img--b' ),
@@ -588,7 +588,7 @@ function vv_page_book( $m, $j ) {
 	$body  = vv_h( 'Read it. Then do the work, ' . vv_mark( 'chapter by chapter.' ), 2, 'vv-sec-title' );
 	$body .= vv_p( 'The book will live on Vivere, in your own private space. Each chapter comes with a workbook so the ideas turn into decisions, and the decisions into a different life.' );
 	$body .= vv_p( 'Access is for members only. The book is read on the site and is never downloaded.', 'vv-note' );
-	$body .= vv_buttons( array( array( 'Open the reader', '/read/becoming-by-design/', '' ), array( 'Join the waitlist', '#join', 'vv-outline' ) ) );
+	$body .= vv_buttons( array( array( 'Open the reader', '/read/becoming-by-design/', '' ), array( 'Buy the book', '/read/becoming-by-design/#/buy', 'vv-outline' ), array( 'Join the waitlist', '#join', 'vv-outline' ) ) );
 	$c    .= vv_section( vv_group( vv_group( vv_html( $mock ), 'vv-mock-wrap' ) . vv_group( $body, 'vv-feature-body' ), 'vv-feature' ), 'vv-sec--tight' );
 
 	$feats = array(
